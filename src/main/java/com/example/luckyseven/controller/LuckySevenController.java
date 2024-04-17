@@ -2,13 +2,11 @@ package com.example.luckyseven.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.*;
-import java.nio.Buffer;
 import java.util.Random;
 // (Нажатия * победы) / 100;
 public class LuckySevenController {
@@ -19,6 +17,7 @@ public class LuckySevenController {
     private Label numberThree;
     private int clicked; // Нажатие на кнопку "Крутите барабан"
     private int victory; // Счёт побед;
+    private double percentSave;
 
     // Всё что используется для показа;
     @FXML
@@ -39,7 +38,8 @@ public class LuckySevenController {
     @FXML
    private void takeAction() // Привязана к кнопке "Вращайте барабан", выдаёт диалоговое окно при получение одной 7-рки из трёх/ всех трёх 7-рок/ ни одной 7-рки;
    {
-        percentVictory.setText("Шанс победы: " + (clicked*victory)/100);
+       percentSave = (clicked*victory)/100;
+       percentVictory.setText("Шанс победы: " + percentSave);
         clicked++;
         labelClicked.setText("Всего нажатий: " + clicked);
        // Генерация рандомных чисед от 0 до 7;
@@ -62,7 +62,7 @@ public class LuckySevenController {
            alert.setContentText("'Cause u have lucky SEVEN!");
            alert.showAndWait();
            labelVictory.setText("Побед: " + victory);
-           resImage.setImage(new Image("C:/Users/Krapivin2021/IdeaProjects/luckySeven/victory.jpg"));
+           resImage.setImage(new Image("C:/Users/Krapivin2021/IdeaProjects/luckySeven/victory.png"));
 
            // При получении всех трёх 7-рок;
            if (numberOne == 7 && numberTwo == 7 && numberThree == 7)
@@ -74,16 +74,18 @@ public class LuckySevenController {
                alert1.setContentText("THREE LUCKY SEVEN IN A RAW!");
                alert1.showAndWait();
                labelVictory.setText("Побед:" + victory);
-               resImage.setImage(new Image("C:/Users/Krapivin2021/IdeaProjects/luckySeven/victory.jpg"));
+               resImage.setImage(new Image("C:/Users/Krapivin2021/IdeaProjects/luckySeven/victory.png"));
            }
-       } else resImage.setImage(new Image("C:/Users/Krapivin2021/IdeaProjects/luckySeven/lose.jpg"));
-       saveTxt();
+       }
+       else resImage.setImage(new Image("C:/Users/Krapivin2021/IdeaProjects/luckySeven/lose.png"));
+
+       saveTxt(); // Сохранение в TXT
    }
 
    private void saveTxt() {
        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-           writer.write(clicked + " : Всего Нажатий /n");
-           writer.write(victory + " : Всего Побед /n");
+           writer.write(clicked + "\n");
+           writer.write(victory + "\n");
        } catch (IOException ex) {
            throw new RuntimeException(ex);
        }
@@ -97,8 +99,8 @@ public class LuckySevenController {
            } catch (IOException ex) {
                throw new RuntimeException(ex);
            }
-
-    } private void initialize (){
+    }
+    public void initialize (){
         readTxt();
     }
 

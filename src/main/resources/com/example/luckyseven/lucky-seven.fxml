@@ -46,8 +46,8 @@
          <font>
             <Font size="50.0" />
          </font></Label>
-      <ImageView fx:id="resImage" fitHeight="210.0" fitWidth="489.0" layoutX="145.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="labelClicked" layoutX="145.0" layoutY="451.0" prefHeight="26.0" prefWidth="147.0">
+      <ImageView fx:id="resImage" fitHeight="210.0" fitWidth="373.0" layoutX="197.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelClicked" layoutX="113.0" layoutY="451.0" prefHeight="26.0" prefWidth="179.0">
          <font>
             <Font size="17.0" />
          </font>
