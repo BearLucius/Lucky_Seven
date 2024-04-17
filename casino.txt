@@ -1,0 +1,1 @@
+11 : Всего Нажатий /n2 : Всего Побед /nLabel[id=percentVictory, styleClass=label]'Шанс победы: 0' : Всего Процент Побед/n
